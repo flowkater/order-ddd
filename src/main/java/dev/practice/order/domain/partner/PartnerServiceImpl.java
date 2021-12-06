@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class PartnerServiceImpl implements PartnerService {
     private final PartnerStore partnerStore;
+    private final PartnerReader partnerReader;
 
     @Override
     @Transactional
@@ -21,16 +22,21 @@ public class PartnerServiceImpl implements PartnerService {
 
     @Override
     public PartnerInfo getPartnerInfo(String partnerToken) {
-        return null;
+        Partner partner = partnerReader.getPartner(partnerToken);
+        return new PartnerInfo(partner);
     }
 
     @Override
     public PartnerInfo enablePartner(String partnerToken) {
-        return null;
+        Partner partner = partnerReader.getPartner(partnerToken);
+        partner.enable();
+        return new PartnerInfo(partner);
     }
 
     @Override
     public PartnerInfo disablePartner(String partnerToken) {
-        return null;
+        Partner partner = partnerReader.getPartner(partnerToken);
+        partner.disable();
+        return new PartnerInfo(partner);
     }
 }

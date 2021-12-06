@@ -19,5 +19,4 @@ public class PartnerInfo {
         this.email = partner.getEmail();
         this.status = partner.getStatus();
     }
-
 }
