@@ -1,5 +1,6 @@
 package dev.practice.order.domain.order;
 
+import com.google.common.collect.Lists;
 import dev.practice.order.common.exception.InvalidParamException;
 import dev.practice.order.common.util.TokenGenerator;
 import dev.practice.order.domain.AbstractEntity;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Slf4j
 @Getter
@@ -30,6 +32,10 @@ public class Item extends AbstractEntity {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.PERSIST)
+    private final List<ItemOptionGroup> itemOptionGroupList = Lists.newArrayList();
 
     @Getter
     @RequiredArgsConstructor
