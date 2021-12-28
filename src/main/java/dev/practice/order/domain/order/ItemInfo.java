@@ -1,5 +1,7 @@
 package dev.practice.order.domain.order;
 
+import dev.practice.order.domain.order.option.ItemOption;
+import dev.practice.order.domain.order.option.ItemOptionGroup;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -17,24 +19,45 @@ public class ItemInfo {
         private final String itemName;
         private final Long itemPrice;
         private final Item.Status status;
-        private final List<ItemOptionGroup> itemOptionGroupList;
+        private final List<ItemOptionGroupInfo> itemOptionGroupInfoList;
+
+        public Main(Item item, List<ItemOptionGroupInfo> itemOptionGroupInfoList) {
+            this.itemToken = item.getItemToken();
+            this.partnerId = item.getPartnerId();
+            this.itemName = item.getItemName();
+            this.itemPrice = item.getItemPrice();
+            this.status = item.getStatus();
+            this.itemOptionGroupInfoList = itemOptionGroupInfoList;
+        }
     }
 
     @Getter
     @Builder
     @ToString
-    public static class ItemOptionGroup {
+    public static class ItemOptionGroupInfo {
         private final Integer ordering;
         private final String optionGroupName;
-        private final List<ItemOption> itemOptionList;
+        private final List<ItemOptionInfo> itemOptionInfoList;
+
+        public ItemOptionGroupInfo(ItemOptionGroup itemOptionGroup, List<ItemOptionInfo> itemOptionInfoList) {
+            this.ordering = itemOptionGroup.getOrdering();
+            this.optionGroupName = itemOptionGroup.getItemOptionGroupName();
+            this.itemOptionInfoList = itemOptionInfoList;
+        }
     }
 
     @Getter
     @Builder
     @ToString
-    public static class ItemOption {
+    public static class ItemOptionInfo {
         private final Integer ordering;
         private final String itemOptionName;
         private final Long itemOptionPrice;
+
+        public ItemOptionInfo(ItemOption itemOption) {
+            this.ordering = itemOption.getOrdering();
+            this.itemOptionName = itemOption.getItemOptionName();
+            this.itemOptionPrice = itemOption.getItemOptionPrice();
+        }
     }
 }

@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -28,7 +29,15 @@ public class ItemReaderImpl implements ItemReader {
     }
 
     @Override
-    public List<ItemInfo.ItemOptionGroup> getItemOptionSeries(Item item) {
-        return null;
+    public List<ItemInfo.ItemOptionGroupInfo> getItemOptionSeries(Item item) {
+        var itemOptionGroupList = item.getItemOptionGroupList();
+        return itemOptionGroupList.stream()
+                .map(itemOptionGroup -> {
+                    var itemOptionList = itemOptionGroup.getItemOptionList();
+                    var itemOptionInfoList = itemOptionList.stream()
+                            .map(ItemInfo.ItemOptionInfo::new)
+                            .collect(Collectors.toList());
+                    return new ItemInfo.ItemOptionGroupInfo(itemOptionGroup, itemOptionInfoList);
+                }).collect(Collectors.toList());
     }
 }

@@ -27,19 +27,24 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional
     public void changeOnSale(String itemToken) {
         var item = itemReader.getItemBy(itemToken);
         item.changeOnSale();
     }
 
     @Override
+    @Transactional
     public void changeEndOfSale(String itemToken) {
         var item = itemReader.getItemBy(itemToken);
         item.changeEndOfSale();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ItemInfo.Main retrieveItemInfo(String itemToken) {
-        return null;
+        var item = itemReader.getItemBy(itemToken);
+        var itemOptionGroupInfoList = itemReader.getItemOptionSeries(item);
+        return new ItemInfo.Main(item, itemOptionGroupInfoList);
     }
 }
