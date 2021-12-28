@@ -1,6 +1,6 @@
 package dev.practice.order.infrastructure.item.optiongroup;
 
-import dev.practice.order.domain.order.option.ItemOptionGroup;
+import dev.practice.order.domain.item.ItemOptionGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

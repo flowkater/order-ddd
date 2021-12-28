@@ -1,11 +1,11 @@
 package dev.practice.order.infrastructure.item;
 
-import dev.practice.order.domain.order.Item;
-import dev.practice.order.domain.order.ItemCommand;
-import dev.practice.order.domain.order.ItemOptionSeriesFactory;
-import dev.practice.order.domain.order.option.ItemOptionGroup;
-import dev.practice.order.domain.order.option.ItemOptionGroupStore;
-import dev.practice.order.domain.order.option.ItemOptionStore;
+import dev.practice.order.domain.item.Item;
+import dev.practice.order.domain.item.ItemCommand;
+import dev.practice.order.domain.item.ItemOptionSeriesFactory;
+import dev.practice.order.domain.item.ItemOptionGroup;
+import dev.practice.order.domain.item.ItemOptionGroupStore;
+import dev.practice.order.domain.item.ItemOptionStore;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

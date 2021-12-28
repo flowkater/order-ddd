@@ -1,6 +1,4 @@
-package dev.practice.order.domain.order;
-
-import dev.practice.order.domain.order.option.ItemOptionGroup;
+package dev.practice.order.domain.item;
 
 import java.util.List;
 
